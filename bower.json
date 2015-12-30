@@ -1,0 +1,25 @@
+{
+  "name": "polito-codehilite",
+  "version": "0.0.0",
+  "authors": [
+    "mbr4nt <mateus.brant@gmail.com>"
+  ],
+  "description": "Code highlighter web component",
+  "main": "polito-codehilite.html",
+  "keywords": [
+    "code",
+    "highlight",
+    "webcomponent"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~1.1.4"
+  }
+}

@@ -1,0 +1,46 @@
+<link rel="import" href="../polymer/polymer.html" />
+
+<dom-module id="polito-codehilite">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/zenburn.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <style>
+        ::content a { color: #efef8f; text-decoration:none; }
+    </style>
+    <template>
+        <pre>
+            <code class$="{{cssClass}}" id="codeContainer">
+                <content>
+                </content>
+            </code>
+        </pre>
+    </template>
+
+    <script>
+        Polymer({
+            is: "polito-codehilite",
+            properties: {
+                links: {
+                    type: "Object",
+                    observer: "_linksChanged"
+                }
+            },
+            ready: function() {
+                hljs.initHighlightingOnLoad();
+            },
+            _linksChanged: function() {
+                if(!this.links) return;
+                console.log(this.links);
+                var self = this;
+                var keywords = Object.keys(this.links);
+                keywords.forEach(function(keyword) {
+                    self._replaceWithLink(keyword, self.links[keyword]);
+                });
+            },
+            _replaceWithLink: function(keyword, url) {
+                var expression = new RegExp("([^\"])\\b(" + keyword + ")\\b([^\"])", "g");
+                this.$.codeContainer.innerHTML = this.$.codeContainer.innerHTML.replace(expression, '$1<a href="' + url + '">$2</a>$3');
+            }
+        });
+    </script>
+</dom-module>

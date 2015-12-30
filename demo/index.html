@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../polito-codehilite/polito-codehilite.html" />
+</head>
+
+<body unresolved>
+    <polito-codehilite>
+/* example */
+public class TwoThreadAlive extends Thread {
+   public void run() {
+      for (int i = 0; i < 10; i++) {
+      printMsg();
+   }
+}
+
+public void printMsg() {
+   Thread t = Thread.currentThread();
+   String name = t.getName();
+   System.out.println("name=" + name);
+}
+
+public static void main(String[] args) {
+   TwoThreadAlive tt = new TwoThreadAlive();
+   tt.setName("Thread");
+   System.out.println("before start(), 
+   tt.isAlive()=" + tt.isAlive());
+   tt.start();
+   System.out.println("just after start(), 
+   tt.isAlive()=" + tt.isAlive());
+   for (int i = 0; i < 10; i++) {
+      tt.printMsg();
+   }
+   System.out.println("The end of main(),
+      tt.isAlive()=" + tt.isAlive());
+   }
+}
+    </polito-codehilite>
+</body>
+<script>
+    document.querySelector("polito-codehilite").links = {
+        "Thread" : "https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html"
+    };
+</script>
+</html>
