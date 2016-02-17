@@ -25,8 +25,8 @@
                     observer: "_linksChanged"
                 }
             },
-            ready: function() {
-                hljs.initHighlightingOnLoad();
+            attached: function() {
+                hljs.highlightBlock( this.$.codeContainer );
             },
             _linksChanged: function() {
                 if(!this.links) return;
